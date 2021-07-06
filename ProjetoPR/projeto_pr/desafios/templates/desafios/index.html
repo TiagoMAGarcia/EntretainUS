@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="eng">
+	<head>
+		<title>EntretainUS</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<a href="{% url 'desafios:index' %}" class="logo"><strong>Entretain</strong> <span>US</span></a>
+                        {% block menu %}
+                            <nav>
+                                <a href="{% url 'desafios:login_user' %}" class="logo"><strong>Login</strong></a>
+                                <a href="{% url 'desafios:sign_up' %}" class="logo"><strong>Sign up</strong></a>
+                            </nav>
+                        {% endblock %}
+					</header>
+
+				<!-- Banner -->
+					<section id="banner" class="major">
+						<div class="inner">
+							<header class="major">
+								{% block welcome %}
+                                    <h1>Welcome</h1>
+                                {% endblock %}
+                                <span class="image">
+										<img src="{% static 'assets/images/challenge1.png'%}" alt="" />
+                                </span>
+							</header>
+							<div class="content">
+								<p>This is a website with numerous challenges.<br />
+								Can you solve them all?</p>
+								<ul class="actions">
+									<li><a href="#one" class="button next scrolly">Get Started</a></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section id="one" class="tiles">
+								<article>
+									<span class="image">
+										<img src="{% static 'assets/images/programming.png'%}" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'desafios:challenges' 'programming' %}" class="link">Programming Challenges</a></h3>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="{% static 'assets/images/gamming.jpg'%}" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'desafios:challenges' 'gaming' %}" class="link">Gaming Challenges</a></h3>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="{% static 'assets/images/sports.jpg'%}" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'desafios:challenges' 'sports' %}" class="link">Sports Challenges</a></h3>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="{% static 'assets/images/culinary.jpg'%}" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'desafios:challenges' 'culinary' %}" class="link">Culinary Challenges</a></h3>
+									</header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="{% static 'assets/images/music.jpg' %}" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'desafios:challenges' 'music' %}" class="link">Music Challenges</a></h3>
+                                    </header>
+								</article>
+								<article>
+									<span class="image">
+										<img src="{% static 'assets/images/makeup.jpg'%}" alt="" />
+									</span>
+									<header class="major">
+										<h3><a href="{% url 'desafios:challenges' 'makeup' %}" class="link">MakeUp Challenges</a></h3>
+									</header>
+								</article>
+							</section>
+
+						<!-- Two -->
+							<section id="two">
+								<div class="inner">
+									<header class="major">
+										<h2>Description</h2>
+									</header>
+									<p>The website presented aims to unite people in this complicated time that we witness these days. It fulfills this objective by presenting several challenges with the function of presenting a form of entertainment and interaction between different users. There are several categories, including music, sports, programming, etc ... that the user can choose to create their own challenges or participate / interact in challenges already created by others. </p>
+									<ul class="actions">
+										<li><a href="http://127.0.0.1:8000/desafios/" class="button next">Get Started</a></li>
+									</ul>
+								</div>
+							</section>
+
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="icons">
+								<li><a href="https://twitter.com/explore" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.facebook.com/groups/293298227350021/" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="https://www.instagram.com/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="https://github.com/" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="https://pt.linkedin.com/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Untitled</li><li>Design: <a href="https://html5up.net/">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+			<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+			<script src="{% static 'assets/js/browser.min.js'%}"></script>
+			<script src="{% static 'assets/js/breakpoints.min.js'%}"></script>
+			<script src="{% static 'assets/js/util.js'%}"></script>
+			<script src="{% static 'assets/js/main.js'%}"></script>
+
+	</body>
+</html>

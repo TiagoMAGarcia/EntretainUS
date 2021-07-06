@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'desafios/comments.css' %}" />
+    <link rel="stylesheet" href="{% static 'desafios/all.min.css' %}" />
+    <title>Comments Section</title>
+</head>
+<body>
+    <header id="header" class="alt">
+        <a href="{% url 'desafios:user_homepage' %}" class="logo"><strong>Entretain</strong> <span>US</span></a>
+        <a href="{% url 'desafios:challenges' challenge.challenge_type %}" class="logo"><strong>Return to Challenge</strong></a>
+        <a href="{% url 'desafios:logout' %}" class="logo"><strong>Logout</strong></a>
+    </header>
+    <div class="main">
+        <div class="commentbox">
+            <div class="upvtbar">
+                <div  class="challenge-likes" id="parent_div">
+                    <p class="upvt">
+                        <form action="{% url 'desafios:challenge_like_upvote' challenge.challenge_type %}" method="post">
+                            {%  csrf_token %}
+                            <button class="v up" type="submit" value="{{ challenge.id }}"  name="like" id="5" >
+                                <div class="v1" id="parent_div2"><i class="far fa-arrow-alt-circle-up" id="child_div_3"></i></div>
+                            </button>
+                        </form>
+                        <p class="n-likes" id="challenge-likes{{ challenge.id }}" >{{ challenge.get_challenge_likes }}</p>
+                        <form action="{% url 'desafios:challenge_like_downvote' challenge.challenge_type %}" method="post">
+                            {%  csrf_token %}
+                            <button class="v down" type="submit" value="{{ challenge.id }}"  name="like" id="6" >
+                                <div class="v1" id="parent_div2"><i class="far fa-arrow-alt-circle-down" id="child_div_4"></i></div>
+                            </button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+            <div class="contentbox">
+                <div class="poster">
+                    <p class="author" id="author">Posted by {{ challenge.get_user }}<ul><li><span>{{ challenge.get_date }}</span></li></ul></p>
+                </div>
+                <div class="content">
+                    <p class="posttitle">{{ challenge.get_title }}</p>
+                    {% if challenge.get_content %}
+                        <p class="textcontent">{{ challenge.get_content }}</p>
+                    {% endif %}
+                    {% if challenge.get_image %}
+                        <img src='{{ challenge.get_image }}'style="max-height: 632.05px; max-width: 430px" >
+                    {% endif %}
+                    {% if challenge.get_video %}
+                        <div class="postvideo">
+                            <iframe class="video" width="609.9" height="315" src="https://www.youtube.com/embed/{{ challenge.get_video }}"
+                                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    {% endif %}
+                </div>
+                <form action="{% url 'desafios:post_comment' challenge.get_tag %}" method="post">
+                    {%  csrf_token %}
+                    <div class="textareabox">
+                        <p class="commenter">Comment as {{ user.get_username }}</p>
+                            <textarea class="areaP" name="content" id="content" placeholder="What are your thoughts"></textarea>
+                    </div>
+                    <div class="Post">
+                        <button class="commentbutton">Comment</button>
+                    </div>
+                    <hr>
+                </form>
+                <div class="allcomment">
+                    {% for comment in comments %}
+                        <div class="comment1">
+                            <div class="commentuser">
+                                <p class="user&time">{{ comment.get_comment_user }}<ul><li><span>{{ comment.get_comment_date }}</span></li></ul></p>
+                            </div>
+                            <div>
+                                <p class="commenttext">{{ comment.get_text }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+       /* let btnarrowup = document.querySelector('#child_div_3');
+        let btnarrowdown= document.querySelector('#child_div_4');
+
+            btnarrowup.addEventListener('click', () => btnarrowup.style.color = 'rgb(50, 147, 219');
+            btnarrowdown.addEventListener('click', () => btnarrowdown.style.color = 'red');
+        */
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (event) {
+            $(document).on('click', '#5', function (event) {
+                event.preventDefault();
+                const pk=$(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url:'{% url 'desafios:challenge_like_upvote' challenge.challenge_type %}',
+                    data: {id:pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    dataType: 'json',
+                    success:function (response) {
+                        console.log($('#challenge-likes'+pk).text(`${response['challenge_likes']}`));
+                    },
+                    error:function (rs, e) {
+                        console.log(rs.responseText);
+                    },
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function (event) {
+            $(document).on('click', '#6', function (event) {
+                event.preventDefault();
+                const pk=$(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url:'{% url 'desafios:challenge_like_downvote' challenge.challenge_type %}',
+                    data: {id:pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    dataType: 'json',
+                    success:function (response) {
+                        console.log($('#challenge-likes'+pk).text(`${response['challenge_likes']}`));
+                    },
+                    error:function (rs, e) {
+                        console.log(rs.responseText);
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+</html>

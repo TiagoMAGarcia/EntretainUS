@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'desafios/create_challenge.css' %}" />
+    <title>Programming Challenges</title>
+</head>
+<body>
+    <header id="header" class="alt">
+        <a href="{% url 'desafios:index' %}" class="logo"><strong>Entretain</strong> <span>US</span></a>
+        <a href="{% url 'desafios:challenges' challenge_type %}" class="logo"><strong>Return to Challenge</strong></a>
+        <a href="{% url 'desafios:logout' %}" class="logo"><strong>Logout</strong></a>
+    </header>
+    <div class="main">
+        <section>
+            <div class="container">
+                <div class="toptitle">
+                    <h3>Create a Post</h3>
+                </div>
+                <div class="post_container" id="post_container">
+                    <div class="buttons">
+                        <button class="button btn1" id="x1" onclick="myFunction1()">Post</button>
+                        <button class="button btn2" id="x2" onclick="myFunction2()">Image</button>
+                        <button class="button btn3" id="x3" onclick="myFunction3()">Video</button>
+                    </div>
+                     <form method="post">
+                         {% csrf_token %}
+                         <div class="title_text" id="title_text">
+                            <textarea class="areaT" id="title1" name="title1" placeholder="Title"></textarea>
+                         </div>
+                        <div id="t1">
+                            <div class="post_text">
+                                <textarea class="areaP" name="content" id="content" placeholder="Text (optional)"></textarea>
+                            </div>
+                        </div>
+                        <div id="t2">
+                            <div class="post_text">
+                                <textarea class="areaL" name="image" id="image" placeholder="URL"></textarea>
+                            </div>
+                        </div>
+                        <div id="t3">
+                            <div class="post_text">
+                                <textarea class="areaI" name="video" id="video" placeholder="EMBED"></textarea>
+                            </div>
+                        </div>
+                        <div class="buttonsQ" id="b">
+                            <div class="btn"><button class="b cnl">Cancel</button></div>
+                            <div class="btn"><button class="b pst">Post</button></div>
+                        </div>
+                     </form>
+                    {% if section == 0 %}
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function(event) {
+                            myFunction1();
+                            });
+                        </script>
+                    {% elif section == 1 %}
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function(event) {
+                            myFunction2();
+                            });
+                        </script>
+                    {% else %}
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function(event) {
+                            myFunction3();
+                            });
+                        </script>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function myFunction1() {
+            document.getElementById("x1").style.color = "rgb(0, 121, 211)";
+            document.getElementById("x1").style.borderBottom = "2px solid rgb(0, 121, 211)";
+            document.getElementById("x2").style.color = "rgb(135, 138, 140)";
+            document.getElementById("x2").style.borderBottom = "1px solid #cdcdcd";
+            document.getElementById("x3").style.color = "rgb(135, 138, 140)";
+            document.getElementById("x3").style.borderBottom = "1px solid #cdcdcd";
+
+            document.getElementById("x1").style.height = "64.5px";
+            document.getElementById("x2").style.height = "64.5px";
+            document.getElementById("x3").style.height = "64.5px";
+
+            document.getElementById("t1").style.display = 'block';
+            document.getElementById("t2").style.display = 'none';
+            document.getElementById("t3").style.display = 'none';
+
+            document.getElementById("post_container").style.height = '53%';
+            document.getElementById("title_text").style.paddingBottom = "6px";
+            document.getElementById("title_text").style.paddingTop = "18px";
+            document.getElementById("b").style.paddingTop = "8px";
+        }
+        function myFunction2() {
+            document.getElementById("x1").style.color = "rgb(135, 138, 140)";
+            document.getElementById("x1").style.borderBottom = "1px solid #cdcdcd";
+            document.getElementById("x2").style.color = "rgb(0, 121, 211)";
+            document.getElementById("x2").style.borderBottom = "2px solid rgb(0, 121, 211)";
+            document.getElementById("x3").style.color = "rgb(135, 138, 140)";
+            document.getElementById("x3").style.borderBottom = "1px solid #cdcdcd";
+
+            document.getElementById("x1").style.height = "45px";
+            document.getElementById("x2").style.height = "45px";
+            document.getElementById("x3").style.height = "45px";
+
+            document.getElementById("t1").style.display = 'none';
+            document.getElementById("t2").style.display = 'block';
+            document.getElementById("t3").style.display = 'none';
+
+            document.getElementById("title_text").style.paddingBottom = "12px";
+            document.getElementById("title_text").style.paddingTop = "35px";
+            document.getElementById("post_container").style.height = '31%';
+            document.getElementById("b").style.paddingTop = "5px";
+        }
+        function myFunction3() {
+            document.getElementById("x1").style.color = "rgb(135, 138, 140)";
+            document.getElementById("x1").style.borderBottom = "1px solid #cdcdcd";
+            document.getElementById("x2").style.color = "rgb(135, 138, 140)";
+            document.getElementById("x2").style.borderBottom = "1px solid #cdcdcd";
+            document.getElementById("x3").style.color = "rgb(0, 121, 211)";
+            document.getElementById("x3").style.borderBottom = "2px solid rgb(0, 121, 211)";
+
+
+            document.getElementById("x1").style.height = "45px";
+            document.getElementById("x2").style.height = "45px";
+            document.getElementById("x3").style.height = "45px";
+
+            document.getElementById("t1").style.display = 'none';
+            document.getElementById("t2").style.display = 'none';
+            document.getElementById("t3").style.display = 'block';
+
+            document.getElementById("title_text").style.paddingBottom = "12px";
+            document.getElementById("title_text").style.paddingTop = "35px";
+            document.getElementById("post_container").style.height = '31%';
+            document.getElementById("b").style.paddingTop = "5px";
+        }
+    </script>
+</body>
+</html>
+
+

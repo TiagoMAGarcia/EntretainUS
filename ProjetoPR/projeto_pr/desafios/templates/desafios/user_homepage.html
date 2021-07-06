@@ -1,0 +1,21 @@
+{% extends "desafios/index.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% block menu %}
+        <!-- Menu -->
+            <div class="logout">
+                <a href="{% url 'desafios:logout' %}" class="logo logout"><strong>Logout</strong></a>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block welcome %}
+        <h1>Welcome {{ user.get_username }}</h1>
+    {% endblock %}
+</body>
+</html>

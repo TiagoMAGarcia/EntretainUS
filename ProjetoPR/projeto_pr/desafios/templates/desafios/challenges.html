@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'desafios/challenges.css' %}" />
+    <link rel="stylesheet" href="{% static 'desafios/all.min.css' %}" />
+    <title>Programming Challenges</title>
+</head>
+<body>
+    <header id="header" class="alt">
+        <a href="{% url 'desafios:user_homepage' %}" class="logo"><strong>Entretain</strong> <span>US</span></a>
+       <!-- <a href="{% url 'desafios:index' %}" class="logo return"><strong>Return to Challenges</strong></a>-->
+        <a href="{% url 'desafios:logout' %}" class="logo"><strong>Logout</strong></a>
+    </header>
+    <div class="main">
+        <section>
+            <div>
+                <h1 class="challenge_type">
+                    {{ challenge_type.upper }} CHALLENGES
+                </h1>
+            </div>
+            <div class="createpost">
+                <form action="{% url 'desafios:create_challenge' challenge_type %}">
+                    <input type="submit" id="1" class="postbutton" value="Create Post" name="createbutton">
+                </form>
+                <div class="icon">
+                    <form action="{% url 'desafios:create_challenge' challenge_type %}">
+                        <button class="btn" id="2" name="createbutton" value="image"><i class="fas fa-image fa-2x"></i></button>
+                    </form>
+                </div>
+                <div class="icon">
+                    <form action="{% url 'desafios:create_challenge' challenge_type %}">
+                        <button class="btn" id="3" name="createbutton" value="link"><i class="fas fa-link fa-2x"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="orderbar">
+                <form action="{% url 'desafios:challenges' challenge_type %}" method="post">
+                    {% csrf_token %}
+                    <div class="a1">
+                        <p class="new">
+                            <button class="icons i1" id="parent_div1" type="submit" name="order" value="date">
+                                <i class="fas fa-certificate fa-lg" id="child_div_1"></i> New
+                            </button>
+                        </p>
+                    </div>
+                </form>
+                <form action="{% url 'desafios:challenges' challenge_type %}" method="post">
+                    {% csrf_token %}
+                    <div class="a1">
+                        <p class="new">
+                            <button class="icons i2" name="order" value="top" id="parent_div2" type="submit">
+                                <i class="fas fa-arrow-up" id="child_div_2"></i> Top
+                            </button>
+                            {% if x == 2 %}
+                                <script>
+                                    document.getElementById("parent_div2").style.backgroundColor = "rgb(232, 232, 232)";
+                                    document.getElementById("parent_div2").style.borderRadius = "20px";
+                                    document.getElementById("parent_div2").style.color = "rgb(50, 147, 219)";
+                                    document.getElementById("child_div_2").style.color = "rgb(50, 147, 219)"
+                                </script>
+                                {% else %}
+                                    <script>
+                                        document.getElementById("parent_div1").style.backgroundColor = "rgb(232, 232, 232)";
+                                        document.getElementById("parent_div1").style.borderRadius = "20px";
+                                        document.getElementById("parent_div1").style.color = "rgb(50, 147, 219)";
+                                        document.getElementById("child_div_1").style.color = "rgb(50, 147, 219)"
+                                    </script>
+                            {% endif %}
+                        </p>
+                    </div>
+                </form>
+            </div>
+                {% for challenge in challenge_list %}
+                    <div class="posts">
+                        <div class="upvotes">
+                            <div  class="challenge-likes" id="parent_div">
+                                <p class="upvt">
+                                    <form action="{% url 'desafios:challenge_like_upvote' challenge_type %}" method="post">
+                                        {%  csrf_token %}
+                                        <button class="v up" type="submit" value="{{ challenge.id }}"  name="like" id="5" >
+                                            <div class="v1" id="parent_div2"><i class="far fa-arrow-alt-circle-up" id="child_div_3"></i></div>
+                                        </button>
+                                    </form>
+                                    <p class="n-likes" id="challenge-likes{{ challenge.id }}" >{{ challenge.get_challenge_likes }}</p>
+                                    <form action="{% url 'desafios:challenge_like_downvote' challenge_type %}" method="post">
+                                    {%  csrf_token %}
+                                        <button class="v down" type="submit" value="{{ challenge.id }}"  name="like" id="6" >
+                                            <div class="v1" id="parent_div2"><i class="far fa-arrow-alt-circle-down" id="child_div_4"></i></div>
+                                        </button>
+                                    </form>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bigdiv">
+                            <div class="poster">
+                                <p class="author" id="author">Posted by {{ challenge.get_user }}<ul><li><span>{{ challenge.get_date }}</span></li></ul></p>
+                            </div>
+                            <div class="postcontent">
+                                <p class="posttitle">{{ challenge.get_title }}</p>
+                                {% if challenge.get_content %}
+                                    <p class="textcontent">{{ challenge.get_content }}</p>
+                                {% endif %}
+                                {% if challenge.get_image %}
+                                    <img src='{{ challenge.get_image }}'style="max-height: 632.05px; max-width: 430px" >
+                                {% endif %}
+                                {% if challenge.get_video %}
+                                    <div class="postvideo">
+                                        <iframe class="video" width="609.9" height="315" src="https://www.youtube.com/embed/{{ challenge.get_video }}"
+                                                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="postcomment">
+                                <div class="commentdiv" id="">
+                                    <p class="comments">
+                                        <form action="{% url 'desafios:comments' challenge.get_tag %}">
+                                            <button class="commentbutton"><i class="fas fa-comment"></i> Comments
+                                            </button>
+                                        </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        </section>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function (event) {
+            $(document).on('click', '#5', function (event) {
+                event.preventDefault();
+                const pk=$(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url:'{% url 'desafios:challenge_like_upvote' challenge_type %}',
+                    data: {id:pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    dataType: 'json',
+                    success:function (response) {
+                        console.log($('#challenge-likes'+pk).text(`${response['challenge_likes']}`));
+                    },
+                    error:function (rs, e) {
+                        console.log(rs.responseText);
+                    },
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function (event) {
+            $(document).on('click', '#6', function (event) {
+                event.preventDefault();
+                const pk=$(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url:'{% url 'desafios:challenge_like_downvote' challenge_type %}',
+                    data: {id:pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    dataType: 'json',
+                    success:function (response) {
+                        console.log($('#challenge-likes'+pk).text(`${response['challenge_likes']}`));
+                    },
+                    error:function (rs, e) {
+                        console.log(rs.responseText);
+                    },
+                });
+            });
+        });
+    </script>
+    <!--<script>
+        function set_time(date) {
+            var date_now = new Date.now();
+            document.getElementById('author').innerText=date_now.toString();
+
+        }
+    </script>-->
+</body>
+</html>
+
+
+

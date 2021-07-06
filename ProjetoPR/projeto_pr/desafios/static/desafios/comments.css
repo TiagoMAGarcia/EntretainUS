@@ -1,0 +1,376 @@
+@import url(fontawesome-all.min.css);
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display&display=swap");
+
+	a{
+		-moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+		-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+		border-bottom: dotted 1px;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	a:hover {
+		border-bottom-color: transparent;
+		color: #9bf1ff !important; /*Get Started color*/
+	}
+
+		a:active {
+			color: #53e3fb !important;
+		}
+
+	#header {
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		color: white;
+
+		display: -moz-flex;
+		display: -webkit-flex;
+		display: -ms-flex;
+		display: flex;
+		justify-content: space-between;
+		background-color: #2a2f4a;
+		box-shadow: 0 0 0.25em 0 rgba(0, 0, 0, 0.15);
+		cursor: default;
+		font-weight: 600;
+		height: 3.25em;
+		left: 0;
+		letter-spacing: 0.25em;
+		line-height: 3.25em;
+		margin: 0;
+		position: fixed;
+		text-transform: uppercase;
+		top: 0;
+		width: 100%;
+		z-index: 10000;
+	}
+
+		#header .logo {
+			border: 0;
+			display: inline-block;
+			font-size: 0.8em;
+			height: inherit;
+			line-height: inherit;
+			padding: 0 1.5em;
+		}
+
+		#header .logo span{
+			display:inline-block;
+		}
+
+		#header .logo strong {
+			-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+			-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+			-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+			transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+			background-color: #ffffff;
+			color: #242943;
+			display: inline-block;
+			line-height: 1.65em;
+			margin-right: 0.325em;
+			padding: 0 0.125em 0 0.375em;
+		}
+
+		#header .logo:hover strong {
+			background-color: #9bf1ff;
+		}
+
+		#header .logo:active strong {
+			background-color: #53e3fb;
+		}
+
+		#header nav {
+			display: -moz-flex;
+			display: -webkit-flex;
+			display: -ms-flex;
+			display: flex;
+			-moz-justify-content: -moz-flex-end;
+			-webkit-justify-content: -webkit-flex-end;
+			-ms-justify-content: -ms-flex-end;
+			justify-content: flex-end;
+			-moz-flex-grow: 1;
+			-webkit-flex-grow: 1;
+			-ms-flex-grow: 1;
+			flex-grow: 1;
+			height: inherit;
+			line-height: inherit;
+		}
+
+			#header nav a {
+				border: 0;
+				display: block;
+				font-size: 0.8em;
+				height: inherit;
+				line-height: inherit;
+				padding: 0 0.75em;
+				position: relative;
+				vertical-align: middle;
+			}
+
+		#header.reveal {
+			-moz-animation: reveal-header 0.35s ease;
+			-webkit-animation: reveal-header 0.35s ease;
+			-ms-animation: reveal-header 0.35s ease;
+			animation: reveal-header 0.35s ease;
+		}
+
+	body{
+		background-color: #DAE0E6;
+	}
+
+	.main{
+		justify-content: center;
+		align-items: center;
+		margin-top: 100px;
+		width: 100%;
+		height: 100%;
+		display: flex;
+	}
+
+	.commentbox{
+		align-items: center;
+		display: flex;
+		height: fit-content;
+		width: 740px;
+		background-color: white;
+		border: 1px solid white;
+		border-radius: 4px;
+	}
+
+
+	.upvtbar{
+		background-color: rgb(248, 249, 250);
+		border-radius: 4px;
+		display: flex;
+		justify-content: center;
+		width: 40px;
+		align-self: stretch;
+	}
+
+	.challenge-likes{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.upvt{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: 13px;
+		font-family: "Arial", sans-serif;
+		color: black;
+		margin-top: 8px;
+	}
+
+	.v{
+		background-color: inherit;
+		border: none;
+		outline: none;
+		cursor: pointer;
+	}
+
+	.v1{
+		background-color: inherit;
+		height: 22px;
+		width: 24px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.v1:hover{
+		background-color: rgb(225, 226, 227);
+		border-radius: 4px;
+		cursor: pointer;
+	}
+
+	.n-likes{
+		margin: 0;
+		font-family: "Arial Rounded MT Bold",sans-serif;
+		font-size: 13px;
+	}
+
+	#parent_div2:hover #child_div_3 {
+		color: rgb(50, 147, 219)
+	}
+
+	#parent_div2:hover #child_div_4{
+		color: red;
+	}
+
+	.content{
+		display: flex;
+		max-width: 656px;
+		width: 100%;
+		flex-direction: column;
+	}
+
+	.contentbox{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: inherit;
+	}
+
+	textarea{
+		min-width: 650px;
+		min-height: 138px;
+		outline: none;
+		resize: vertical;
+		overflow: auto;
+		border: 1px solid #cdcdcd;
+		border-radius: 3px;
+		font-family: "Arial Rounded MT Bold", sans-serif;
+
+	}
+
+	textarea:focus{
+		border: 1px solid black;
+	}
+
+	.Post{
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		width: 656px;
+		font-family: "Arial Rounded MT Bold", sans-serif;
+		font-size: 14px;
+		color: rgb(135, 138, 140);
+	}
+
+	#order{
+		outline: none;
+		border: none;
+		color: black;
+	}
+
+	#order:hover{
+		border-radius: 10px;
+		background-color: #cdcdcd;
+		cursor: pointer;
+	}
+
+	option{
+		outline: none;
+		border: none;
+		background-color: white;
+	}
+
+	.commentbutton{
+		margin-top: 5px;
+		border: none;
+		outline: none;
+		background-color: black;
+		color: white;
+		opacity: 0.5;
+		width: 96px;
+		height: 28px;
+		border-radius: 4px;
+	}
+
+	.commentbutton:hover{
+		background-color: black;
+		color: white;
+		cursor: pointer;
+		opacity: 1;
+	}
+
+	.commenter{
+		font-family: "Arial Rounded MT Bold", sans-serif;
+		font-size: 11px;
+		margin-left: 0;
+		margin-bottom: 5px;
+	}
+
+	hr{
+		border: 0.5px solid #cdcdcd;
+		width: 656px;
+	}
+
+	.posttitle{
+		font-family: "Arial Rounded MT Bold", sans-serif;
+		display: flex;
+		align-self: flex-start;
+		font-size: 20px;
+		margin-top: 8px;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+
+	.textcontent{
+		font-family: "Arial Rounded MT Bold", sans-serif;
+		display: flex;
+		align-self: flex-start;
+		font-size: 14px;
+	}
+
+	.poster{
+		display: flex;
+		justify-content: flex-start;
+		font-size: 12px;
+		font-family: "Arial Rounded MT Bold",sans-serif;
+		align-items: center;
+		width: 656px;
+		height: 25px;
+	}
+
+	.allcomment{
+		display: flex;
+		flex-direction: column;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.comment1{
+		background-color: #ebebeb;
+		border-radius: 4px;
+		margin-top: 10px;
+	}
+
+	.commentuser{
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		width: 656px;
+		font-size: 12px;
+	}
+
+	.user\&time{
+		margin-left: 10px;
+	}
+
+	.commenttext{
+		margin-left: 10px;
+		margin-top: 0;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		width: 656px;
+		font-size: 14px;
+	}
+
+	ul{
+		padding-left: 17px;
+		margin: 0;
+		display: flex;
+		align-items: center;
+	}
+
+	li span{
+		position: relative;
+		left: -5px;
+	}
+
+	li{
+		padding: 0;
+		color: rgb(135, 138, 140);
+	}
+
+	.far{
+		color: rgb(135, 138, 140);
+	}
+
+
